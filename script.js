@@ -5,6 +5,7 @@ window.application = {
         login: undefined,
         token: undefined,
     },
+    gameUrl: 'https://skypro-rock-scissors-paper-backend.vercel.app',
     screensTemplates: {
         welcomeScreenTemplate: () => {return {}},
         lobbyScreenTemplate: () => {return {}},
@@ -64,9 +65,9 @@ function play() {
     const token = window.application.player.token;
     const id = window.application['player-status'].game.id;
 
-    const gameUrl = 'https://skypro-rock-scissors-paper-backend.vercel.app/';
+    const gameUrl = 'https://skypro-rock-scissors-paper-backend.vercel.app';
 
-    fetch(`${gameUrl}/play?token=${token}&id=${id}&move=${move}`)
+    fetch(`${application.gameUrl}/play?token=${token}&id=${id}&move=${move}`)
         .then((response) => {response.json()})
         .then(data => {
             const gameStatus = data['game-status'].status;
