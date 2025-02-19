@@ -61,3 +61,20 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const gameUrl = window.application.player.gameUrl;
+
+function errorHandler() {
+  const errorTemplate = {
+    block: 'div',
+    content: [{
+      block: 'h1',
+      content: 'Ошибка'
+    }, {
+      block: 'p',
+      content: 'Произошла ошибка. Попробуйте еще раз.'
+    }],
+  };
+
+  const elementError = browserTemplateEngine(errorTemplate);
+  const appDiv = document.querySelector(".app");
+  appDiv.innerHTML = elementError.innerHTML;
+}
