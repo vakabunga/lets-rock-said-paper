@@ -1,4 +1,4 @@
-resultLoseScreenTemplate: (gameStatus, move) => {return {
+resultScreenTemplate: (gameStatus, move) => {return {
     block: 'div',
     content: [{
         block: 'div',
