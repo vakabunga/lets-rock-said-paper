@@ -84,7 +84,7 @@ function getPlayerList(token) {
     });
 }
 
-function gameScreenTemplate(token) {
+function getGameStatus(token) {
   fetch(`${window.application.player.gameUrl}game-status?token=${token}`)
     .then((response) => response.json())
     .then((data) => {
@@ -107,29 +107,79 @@ function gameScreenTemplate(token) {
     });
 }
 
-function play(token, id) {
-  fetch(`${application.gameUrl}/play?token=${token}&id=${id}&move=${move}`)
-    .then((response) => {response.json()})
-    .then(data => {
-      const gameStatus = data['game-status'].status;
-      if (gameStatus === "waiting-for-your-move") {
-        window.application.renderScreen(gameScreenTemplate(token));
-      }
-      if (gameStatus === "waiting-for-enemy-move") {
-        window.application.renderScreen(spinnerScreenTemplate());
-      }
-      if (gameStatus === "lose") {
-        window.application.renderScreen(resultScreenTemplate());
-      }
-      if (gameStatus === "win") {
-        window.application.renderScreen(resultScreenTemplate());
-      }
-      if (gameStatus = 'error') {
-        console.log(data.message)
-      }
-    }) 
-    .catch((error) => {
-      window.application.screensTemplates.errorHandler();
-      console.error('Сетевая ошибка:', error);
-    })
+function play(move) {
+  const token = application.player.token;
+  const id = application['player-status'].game.id;
+
+  const gameContent = document.querySelector('game-content');
+
+  fetch(`${application.player.gameUrl}/play?token=${token}&id=${id}&move=${move}`)
+      .then((response) => {response.json()})
+      .then(data => {
+          const gameStatus = data['game-status'].status;
+
+          if (gameStatus === 'waiting-for-your-move') {
+              gameContent.textContent = 'We have a draw. Waiting for your move...';
+          }
+          if (gameStatus === 'waiting-for-enemy-move') {
+              gameContent.textContent = 'Waiting for enemy move...';
+          }
+          if (gameStatus === 'lose') {
+              resultScreen(gameStatus, move);
+          }
+          if (gameStatus === 'win') {
+              resultScreen(gameStatus, move);
+          }
+          if (gameStatus = 'error') {
+              console.log(data.message)
+          }
+      }) 
+      .catch((error) => {
+          errorHandler(data);
+      })
+}
+
+app.addEventListener('click', function (event) {
+  if (event.target.hasAttribute('data-move')) {
+      const move = event.target['data-move'];
+
+      play(move);
+  }
+});
+
+function errorHandler(data) {
+  let errorMessage = data.message;
+  let screen = '';
+
+  window.application.renderScreen(application.screensTemplates.errorScreenTemplate);
+
+  const errorButton = document.querySelector('.error-button');
+
+  if (data.message === 'undefined' || data.message === `token doesn't exist`) {
+      errorButton.textContent = 'Login again';
+      screen = 'welcomeScreenTemplate';
+  } else {
+      errorButton.textContent = 'to Lobby';
+      screen = 'lobbyScreenTemplate';
+  }
+
+  errorButton.addEventListener('click', function (event) {
+      renderScreen(screen);
+  });
+}
+
+function resultScreen (gameStatus, move) {
+  renderScreen(resultScreenTemplate);
+
+  const imageWin = document.querySelector('image_win');
+  const titleResult = document.querySelector('header-result');
+
+  if (gameStatus === 'win') {
+      titleResult.textContent = 'You win!'
+  }
+
+  if (gameStatus === 'lose') {
+      imageWin.classList.add('hidden');
+      titleResult.textContent = 'You lose!'
+  }
 }

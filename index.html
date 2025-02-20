@@ -3,14 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Камень, Ножницы, Бумага </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <title>Rock, paper, scissors</title>
 </head>
 <body>
-    <div class="app">  
-    </div>
-    <script src="./index.js"></script>
-    <script src="./src/lib/browserTemplateEngine.js"></script>
-    <script src="./src/components/screen.js"></script>
-    <script src="./src/API/api.js"></script>
+    <div class="app"></div>
+
+    <script src="/index.js"></script>
+    <script src="/src/API/api.js"></script>
+
+    <!-- отрисовка -->
+    <script src="/src/lib/browserTemplateEngine.js"></script>
+    <script src="/src/lib/renderScreen.js"></script>
+
+    <!-- экраны -->
+    <script src="/src/components/welcomeScreenTemplate.js"></script>
+    <script src="/src/components/lobbyScreenTemplate.js"></script>
+    <script src="/src/components/gameScreenTemplate.js"></script>
+    <script src="/src/components/resultScreenTemplate.js"></script>
+    <script src="/src/components/errorScreenTemplate.js"></script>
+    <script src="/src/components/screen.js"></script>
 </body>
 </html>
