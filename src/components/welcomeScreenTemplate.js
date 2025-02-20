@@ -1,4 +1,5 @@
-welcomeScreenTemplate: () => {return {
+function welcomeScreenTemplate() {
+return {
     block: 'div',
     content: [{
         block: 'div',
@@ -27,4 +28,5 @@ welcomeScreenTemplate: () => {return {
             }],
         }],
     }],
-}}
+};
+}

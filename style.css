@@ -229,3 +229,7 @@
 .hidden {
     display: none;
 }
+
+.error-text {
+    color: crimson;
+}
