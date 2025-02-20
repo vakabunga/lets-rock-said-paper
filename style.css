@@ -55,15 +55,15 @@
 }
 
 .app-background_title {
-    background-image: url(/images/title.webp);;
+    background-image: url(/assets/images/title.webp);;
 }
 
 .app-background_game {
-    background-image: url(/images/background.webp);
+    background-image: url(/assets/images/background.webp);
 }
 
 .app-background_result {
-    background-image: url(/images/lose.webp);
+    background-image: url(/assets/images/lose.webp);
 }
 
 /* welcomeScreen */
