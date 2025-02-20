@@ -57,7 +57,7 @@ function getStart(token) {
       } else if (data.message === `token doesn't exist`) {
         console.log('Нет игрока с таким токеном');
         window.application.checkPlayerStatus(token);
-      } else (data.message === 'player is already in game') {
+      } else if (data.message === 'player is already in game') {
         console.log('Игрок уже в игре, нельзя начать две игры одновременно');
         window.application.checkPlayerStatus(token);
       }
@@ -112,22 +112,17 @@ function play(token, id) {
     .then((response) => {response.json()})
     .then(data => {
       const gameStatus = data['game-status'].status;
-      
       if (gameStatus === "waiting-for-your-move") {
         window.application.renderScreen(gameScreenTemplate(token));
-        //отрисовка экрана ничья, ожидаем ваш ход
       }
       if (gameStatus === "waiting-for-enemy-move") {
         window.application.renderScreen(spinnerScreenTemplate());
-        //отрисовка экрана ждем экрана соперника
       }
       if (gameStatus === "lose") {
         window.application.renderScreen(resultScreenTemplate());
-        //отрисовка экрана вы проиграли
       }
       if (gameStatus === "win") {
         window.application.renderScreen(resultScreenTemplate());
-        //отрисовка экрана вы выиграли
       }
       if (gameStatus = 'error') {
         console.log(data.message)
