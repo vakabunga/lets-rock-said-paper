@@ -1,11 +1,7 @@
-# Игра «Камень, ножницы, бумага»
+# Игра "Камень, Ножницы, Бумага"
 
-## Запуск
+Фронтенд-часть
 
-1. ```git clone https://github.com/vakabunga/lets-rock-said-paper.git```
-2. ```npx http-server .```
-3. ```http://localhost:8080/```
+Запускается локально (`npx http-server .`)
 
-## Описание
-
-TBA
+Работает с Фронтендом по адресу: https://skypro-rock-scissors-paper-backend.vercel.app/

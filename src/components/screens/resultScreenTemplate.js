@@ -10,12 +10,12 @@ function resultScreenTemplate(gameStatus, move) {
                 content: [{
                     block: 'div',
                     cls: ['header', 'header-result'],
-                    content: '',
+                    content: gameStatus,
                 }, {
                     block: 'img',
                     cls: 'image_win',
                     attrs: {
-                        'src': `/assets/images/${move}-win.png`,
+                        'src': `./src/assets/images/${move}-win.png`,
                         'alt': 'win',
                     },
                 }, {
@@ -23,12 +23,12 @@ function resultScreenTemplate(gameStatus, move) {
                     cls: 'button-container',
                     content: [{
                         block: 'button',
-                        cls: ['button', 'button__result'],
+                        cls: ['button', 'button__result', 'start-game-button'],
                         content: 'Play again?',
                     }, {
                         block: 'button',
-                        cls: ['button', 'button__result'],
-                        content: 'to Lobby',
+                        cls: ['button', 'button__result', 'cancel-button'],
+                        content: 'Lobby',
                     }],
                 }],
             }],
